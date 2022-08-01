@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
 {% block content %}
     <h1>{{ article.title }}</h1>
-<p>{{ article.text }}</p>
-<p>
-    {% for tag in article.publications.all %}
-        <a href="{% url 'tag_list' tag_id=tag.id %}">{{ tag.name }}</a>
-    {% endfor %}
-
-</p>
-<hr>
-<p>
-    <b>Дата</b>: {{ article.created_at }} <br>
-    <b>Категория</b>: {{ category }} <br>
-</p>
+    {% if article.image %}
+        <img class="img-thumbnail" src="{{ article.image.url }}" alt="">
+    {% endif %}
+    <p>{{ article.text }}</p>
+    <p>
+        {% for tag in article.publications.all %}
+            <a href="{% url 'tag_list' tag_id=tag.id %}">{{ tag.name }}</a>
+        {% endfor %}
+    </p>
+    <hr>
+    <p>
+        <b>Дата</b>: {{ article.created_at }} <br>
+        <b>Категория</b>: {{ category }} <br>
+    </p>
 {% endblock %}
